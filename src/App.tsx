@@ -9,10 +9,10 @@ type tEntry = {
 
 type tRenderEntry = {
 	entry: tEntry;
-	detpth: number;
+	depth: number;
 };
 
-function RenderEntry({ entry, detpth }: tRenderEntry) {
+function RenderEntry({ entry, depth }: tRenderEntry) {
 	const [isOpen, setIsOpen] = useState<boolean>(false);
 
 	return (
@@ -25,17 +25,17 @@ function RenderEntry({ entry, detpth }: tRenderEntry) {
 				)}
 
 				<p>
-					{entry.name} {detpth}
+					{entry.name} {depth}
 				</p>
 			</div>
 
 			{isOpen &&
 				entry.children?.map((entry, index) => (
-					<div style={{ paddingTop: '8px', paddingLeft: `${detpth * 10}px` }}>
+					<div style={{ paddingTop: '8px', paddingLeft: `${depth * 10}px` }}>
 						<RenderEntry
 							key={`${entry.name}${index}`}
 							entry={entry}
-							detpth={detpth + 1}
+							depth={depth + 1}
 						/>
 					</div>
 				))}
@@ -52,7 +52,7 @@ export function App() {
 		<RenderEntry
 			key={`${entry.name}${index}`}
 			entry={entry}
-			detpth={1}
+			depth={1}
 		/>
 	));
 }
